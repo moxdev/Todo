@@ -6,8 +6,32 @@ $(document).ready(function() {
 function bindEvents() {
   // Bind functions which add, remove, and complete todos to the appropriate
   // elements
+  $('#addTodo').on("click", addTodo);
 
+}
 
+function addTodo(e){
+  e.preventDefault();
+
+  var addTodo = $('#todo_content').val();
+  var $button = $(this);
+  $button.prop("disabled", true);
+
+  var serverRequest = $.ajax({
+    url: '/add_todo',
+    type: 'POST',
+    data: {
+      todo_content: addTodo
+    },
+  });
+  serverRequest.done(function(data) {
+    $('.todo_list ul').append(buildTodo(addTodo, data.id));
+    $('#todo_content').val('');
+    $button.prop("disabled", false);
+  });
+  serverRequest.fail(function() {
+    console.log("Yo code is whack son");
+  });
 }
 
 function buildTodo(todoName) {

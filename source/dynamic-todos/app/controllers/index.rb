@@ -5,6 +5,8 @@ end
 
 post '/add_todo' do
   @todo = Todo.create(todo_content: params[:todo_content])
+  content_type :json
+  {:id => @todo.id.to_s}.to_json
 end
 
 put '/complete_todo/:id' do
