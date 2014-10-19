@@ -1,9 +1,20 @@
 get '/' do
-  # Look in app/views/index.erb
+  @todos =Todo.all
   erb :index
 end
 
 post '/add_todo' do
-  p "Inside /add_todo route!"
+  @todo = Todo.create(todo_content: params[:todo_content])
 end
+
+put '/complete_todo/:id' do
+  @todo = Todo.find(params[:id])
+  @todo.update_attributes(completed: params[:completed])
+end
+
+delete '/delete_todo/:id' do
+  @todo = Todo.find(params[:id])
+  @todo.destroy
+end
+
 

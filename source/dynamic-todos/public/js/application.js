@@ -6,6 +6,8 @@ $(document).ready(function() {
 function bindEvents() {
   // Bind functions which add, remove, and complete todos to the appropriate
   // elements
+
+
 }
 
 function buildTodo(todoName) {
