@@ -7,6 +7,7 @@ function bindEvents() {
   // Bind functions which add, remove, and complete todos to the appropriate
   // elements
   $('#addTodo').on("click", addTodo);
+  $('.todo_list').on("click", ".delete_todo", deleteTodo);
 
 }
 
@@ -25,7 +26,7 @@ function addTodo(e){
     },
   });
   serverRequest.done(function(data) {
-    $('.todo_list ul').append(buildTodo(addTodo, data.id));
+    $('.todo_list ul').append(buildTodo(addTodo));
     $('#todo_content').val('');
     $button.prop("disabled", false);
   });
@@ -34,14 +35,29 @@ function addTodo(e){
   });
 }
 
+function deleteTodo(e){
+  e.preventDefault();
+
+  var deleteId = $(this).parent().data('id');
+  var isDeleted = $(this).parent().remove();
+  var ajaxRequest = $.ajax({
+    url: '/delete_todo/' + deleteId,
+    type: 'delete'
+  });
+}
+
 function buildTodo(todoName) {
   // gets todoTemplate stored in DOM.
   var todoTemplate = $.trim($('#todo_template').html());
+
   // Creates an jQueryDOMElement from the todoTemplate.
   var $todo = $(todoTemplate);
+
+
   // Modifies it's text to use the passed in todoName.
-  $todo.find('h2').text(todoName);
+  $todo.find('.todo_content').text(todoName);
   // Returns the jQueryDOMElement to be used elsewhere.
+
   return $todo;
 }
 

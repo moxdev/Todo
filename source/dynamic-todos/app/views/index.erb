@@ -4,14 +4,15 @@
   <div id="todo">
   <div class="toolbox">
     <form action="/add_todo" method="post">
-      <input id="todo_content" type="text" name="todo_content" value="Put your todo item here!"/>
-      <input id="addTodo" type="submit" value="Add Todo"/>
+      <input autofocus id="todo_content" type="text" name="todo_content" placeholder="Enter your todo item here!"/>
+      <input id="addTodo" type="submit" value="New Todo"/>
       <!-- <button class="add" type="submit">Add Todo</button> -->
     </form>
   </div>
 
   <div class="todo_list">
     <ul>
+      <!-- From DB -->
     <% @todos.each do |todo| %>
       <li data-id="<%= todo.id %>">
         <input class="complete_todo" type="checkbox" name="completed"
@@ -23,14 +24,13 @@
     </ul>
   </div>
 
+  <!-- Ajax to Screen -->
   <div id="todo_template" style="display: none;">
-    <div class="todo">
-      <h2>Todo Name</h2>
-      <ul>
-        <li><a href="#" class="delete">Delete</a></li>
-        <li><a href="#" class="complete">Complete</a></li>
-      </ul>
-    </div>
-  </div>
+    <li data-id="">
+      <input class="complete_todo" type="checkbox" name="completed"/>
+      <span class="todo_content">Todo Content</span>
+      <button class="delete_todo" type="button">delete</button>
+    </li>
+  </div><!-- Todo Template End -->
 </div>
 </div>
