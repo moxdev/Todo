@@ -1,7 +1,5 @@
-<div id="container">
+<div id="todo">
   <h1>The To Do List</h1>
-
-  <div id="todo">
   <div class="toolbox">
     <form action="/add_todo" method="post">
       <input autofocus id="todo_content" type="text" name="todo_content" placeholder="Enter your todo item here!"/>
@@ -15,10 +13,9 @@
       <!-- From DB -->
     <% @todos.each do |todo| %>
       <li data-id="<%= todo.id %>">
-        <input class="complete_todo" type="checkbox" name="completed"
-        <%= todo.completed ? 'checked="checked"' : ' ' %> />
-        <span class="todo_content"><%= todo.todo_content %></span>
+        <span class="todo_content"><%= todo.todo_content %></span><br>
         <button class="delete_todo" type="button">delete</button>
+        <button class="complete_todo" type="button">complete</button>
       </li>
     <% end %>
     </ul>
@@ -26,11 +23,12 @@
 
   <!-- Ajax to Screen -->
   <div id="todo_template" style="display: none;">
-    <li data-id="">
-      <input class="complete_todo" type="checkbox" name="completed"/>
-      <span class="todo_content">Todo Content</span>
-      <button class="delete_todo" type="button">delete</button>
-    </li>
-  </div><!-- Todo Template End -->
-</div>
+    <div class="todo">
+      <h2>Todo Name</h2>
+      <ul>
+        <li><a href="#" class="delete">Delete</a></li>
+        <li><a href="#" class="complete">Complete</a></li>
+      </ul>
+    </div>
+  </div>
 </div>

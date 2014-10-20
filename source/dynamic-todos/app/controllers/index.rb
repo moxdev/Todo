@@ -9,7 +9,7 @@ post '/add_todo' do
   {:id => @todo.id.to_s}.to_json
 end
 
-put '/complete_todo/:id' do
+post '/complete_todo/:id' do
   @todo = Todo.find(params[:id])
   @todo.update_attributes(completed: params[:completed])
 end
