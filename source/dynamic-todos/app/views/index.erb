@@ -1,16 +1,27 @@
 <div id="todo">
+  <h1>The To Do List</h1>
   <div class="toolbox">
     <form action="/add_todo" method="post">
-      <input type="text" class="todo" value="Put your todo item here!"/>
-      <input type="submit" value="Add Todo"/>
+      <input autofocus id="todo_content" type="text" name="todo_content" placeholder="Enter your todo item here!"/>
+      <input id="addTodo" type="submit" value="New Todo"/>
       <!-- <button class="add" type="submit">Add Todo</button> -->
     </form>
   </div>
 
   <div class="todo_list">
-
+    <ul>
+      <!-- From DB -->
+    <% @todos.each do |todo| %>
+      <li data-id="<%= todo.id %>">
+        <span class="todo_content"><%= todo.todo_content %></span><br>
+        <button class="delete_todo" type="button">delete</button>
+        <button class="complete_todo" type="button">complete</button>
+      </li>
+    <% end %>
+    </ul>
   </div>
 
+  <!-- Ajax to Screen -->
   <div id="todo_template" style="display: none;">
     <div class="todo">
       <h2>Todo Name</h2>

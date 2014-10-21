@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # P8 JavaScript Dynamic Elements And Events 
 
 ## Learning Competencies
@@ -42,3 +43,7 @@ When creating lists, you often want to reorder them. Use [HTML5 Drag and Drop](h
 * [Event Delegation][event-delegation]
 
 [event-delegation]: http://davidwalsh.name/event-delegate
+=======
+Todo
+====
+>>>>>>> 6ffe6c5477b53f28f9e95cc22508962de1c24a98
