@@ -26,6 +26,7 @@ function addTodo(e){
     },
   });
   serverRequest.done(function(data) {
+    console.log(serverRequest);
     $('.todo_list ul').append(buildTodo(addTodo));
     $('#todo_content').val('');
     $button.prop("disabled", false);
